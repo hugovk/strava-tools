@@ -102,3 +102,8 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Exported Strava data
+activities.csv
+activities/
+export_*
