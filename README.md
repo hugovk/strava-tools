@@ -23,10 +23,10 @@ and wait for the email. Unzip export_xxxxxxx.zip and move the
 ```bash
 # Rename files from 1836025202.gpx to 20180912-064451-Ride.gpx
 # First a test run without changing files
-python3 rename-activities.py --dry-run
+python3 rename_activities.py --dry-run
 
 # Then do it
-python3 rename-activities.py
+python3 rename_activities.py
 
 # Unzip files, deletes GZ files
 gunzip activities/*.gz
