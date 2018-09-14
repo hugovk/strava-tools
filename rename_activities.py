@@ -23,6 +23,29 @@ def load_csv(csv_file):
     return data
 
 
+def convert_date_string(input):
+    # 2010-05-22 19:39:29
+    # ->
+    # 20100522-193929
+    new_date = input
+    new_date = new_date.replace("-", "")
+    new_date = new_date.replace(":", "")
+    new_date = new_date.replace(" ", "-")
+    return new_date
+
+
+def output_file(activity, ext=None):
+    # Return name like 20141207-152233-Ride.gpx
+    new_date = convert_date_string(activity["date"])
+
+    path = pathlib.Path(activity["filename"])
+    if not ext:
+        ext = "".join(path.suffixes)
+    outfile = "{}-{}{}".format(new_date, activity["type"], ext)
+    outfile = path.parent / outfile
+    return outfile
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="TODO", formatter_class=argparse.ArgumentDefaultsHelpFormatter
@@ -39,19 +62,7 @@ if __name__ == "__main__":
         # We want to rename the file like 20141207-152233-Ride.gpx
         # print(activity)
         infile = activity["filename"]
-
-        # 2010-05-22 19:39:29
-        # ->
-        # 20100522-193929
-        new_date = activity["date"]
-        new_date = new_date.replace("-", "")
-        new_date = new_date.replace(":", "")
-        new_date = new_date.replace(" ", "-")
-
-        path = pathlib.Path(infile)
-        exts = "".join(path.suffixes)
-        outfile = "{}-{}{}".format(new_date, activity["type"], exts)
-        outfile = path.parent / outfile
+        outfile = output_file(activity)
 
         print("{}\t->\t{}".format(infile, outfile))
         if not args.dry_run:
