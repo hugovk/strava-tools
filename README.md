@@ -43,19 +43,67 @@ brew install gpsbabel
 
 # Convert activities/*.fit to activities/*.gpx, keeps FIT files
 bash fits2gpxs.sh
+
+# Optionally delete the FIT files
+# rm activities/*.fit
 ```
 
-If you have something like a Wahoo Elemnt Bolt and get `fit: Unsupported 
-protocol version 2.0` with GPSBabel 1.5.4, support for FIT v2 was added in 
+### Convert FIT v2 files
+
+The Wahoo Elemnt Bolt creates files in FIT version 2. Here's some ways to
+convert to GPX. However, only GPX exported from Strava worked for me with the
+[marcusvolz/strava](https://github.com/marcusvolz/strava) visualistation tools.
+
+#### GPSBabel
+
+You can use [GPSBabel](https://www.gpsbabel.org/) to convert them:
+
+```bash
+# Install on Mac
+brew install gpsbabel
+
+# Convert activities/*.fit to activities/*.gpx, keeps FIT files
+bash fits2gpxs.sh
+```
+
+If you have something like a Wahoo Elemnt Bolt and get `fit: Unsupported
+protocol version 2.0` with GPSBabel 1.5.4, support for FIT v2 was added in
 https://github.com/gpsbabel/gpsbabel/pull/163 which hasn't yet been released
 (as of 2018-09-14).
 
 Instead, download and open latest build DMG file from
-https://github.com/gpsbabel/gpsbabel/releases (was d2c667f for me). Then edit 
-`fits2gpxs.sh` and update `GPSBABELPATH` to point to the new `gpsbabel` binary
-and run again.
+https://github.com/gpsbabel/gpsbabel/releases (was d2c667f for me). Then edit
+`fits2gpxs.sh` and update `GPSBABELPATH` to point to the new `gpsbabel` binary,
+something like
+`GPSBABELPATH=/Volumes/GPSBabelFE/GPSBabelFE.app/Contents/MacOS/gpsbabel` and
+run again.
+
+#### FIT-to-GPX
+
+Alternatively, try [Jeffrey Friedl's FIT-to-GPX](http://regex.info/blog/2017-05-13/2799).
+
+1. Download the Java `FitCSVTool` included with the 
+[free FIT SDK](https://www.thisisant.com/resources/fit/)
+([direct download link](https://www.thisisant.com/developer/resources/downloads/)).
 
 ```bash
-# Optionally delete the FIT files
-# rm activities/*.fit
+wget https://raw.githubusercontent.com/jeffrey-friedl/FIT-to-GPX/master/fit2gpx
+edit fit2gpx fits2gpx.sh
 ```
+
+Update `JAVA_FITCSV_CMD` in `fit2gpx` to point to the file in the downloaded
+SDK and edit `fits2gpxs` to use `fit2gpx` instead of `gpsbabel`.
+
+```bash
+# Convert activities/*.fit to activities/*.gpx, keeps FIT files
+bash fits2gpxs.sh
+```
+
+#### Export as GPX from Strava
+
+Follow the
+[Strava guide](https://support.strava.com/hc/en-us/articles/216918437-Exporting-your-Data-and-Bulk-Export#GPX)
+to export each file.
+
+Alternatively, use `download_fit_as_gpx.py` to get several. See instructions at
+the top of the file.
