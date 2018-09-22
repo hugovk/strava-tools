@@ -50,9 +50,8 @@ bash fits2gpxs.sh
 
 ### Convert FIT v2 files
 
-The Wahoo Elemnt Bolt creates files in FIT version 2. Here's some ways to
-convert to GPX. However, only GPX exported from Strava worked for me with the
-[marcusvolz/strava](https://github.com/marcusvolz/strava) visualistation tools.
+The Wahoo Elemnt Bolt creates files in FIT version 2. Here's some ways to convert to
+GPX.
 
 #### GPSBabel
 
@@ -82,7 +81,7 @@ run again.
 
 Alternatively, try [Jeffrey Friedl's FIT-to-GPX](http://regex.info/blog/2017-05-13/2799).
 
-1. Download the Java `FitCSVTool` included with the 
+1. Download the Java `FitCSVTool` included with the
 [free FIT SDK](https://www.thisisant.com/resources/fit/)
 ([direct download link](https://www.thisisant.com/developer/resources/downloads/)).
 
@@ -107,3 +106,46 @@ to export each file.
 
 Alternatively, use `download_fit_as_gpx.py` to get several. See instructions at
 the top of the file.
+
+## marcusvolz/strava
+
+You can make some great visualisations with
+[marcusvolz/strava](https://github.com/marcusvolz/strava). See that repo and
+`stravaviz.R` for examples.
+
+### Troubleshooting
+
+If you get an error with the [marcusvolz/strava](https://github.com/marcusvolz/strava)
+visualisation tools like:
+
+```R
+> data <- process_data("activities")
+Error in data.frame(lat = lat, lon = lon, ele = ele, time = time, type = type) :
+  arguments imply differing number of rows: 1366, 0, 1
+Calls: process_data ... <Anonymous> -> map -> .f -> %>% -> eval -> eval -> data.frame
+Execution halted
+```
+
+It means not all the coordinate trackpoints in your GPX files have elevation values.
+Some options:
+
+* Export those tracks from Strava. Strava makes altitude corrections, which is why their
+exports have points with elevation values when original files do not.
+
+* If you don't want elevation profiles (`p3 <- plot_elevations(data)`), edit
+  `strava/R/process_data.R` and remove `ele = ele` from
+[this line](https://github.com/marcusvolz/strava/blob/b98010aa9ef3ad7e911e7cf26157a2a90e9e8137/R/process_data.R#L32):
+
+```R
+result <- data.frame(lat = lat, lon = lon, ele = ele, time = time, type = type) %>%
+```
+
+This branch has removed it:
+```R
+devtools::install_github("hugovk/strava", ref="no-ele")
+```
+
+* Use an old version of `marcusvolz/strava`:
+```R
+devtools::install_github("marcusvolz/strava", ref="4b15bef416955415759361ac10e227ca07c3fde6")
+```
