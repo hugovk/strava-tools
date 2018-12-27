@@ -15,6 +15,9 @@ Post-GDPR, you can [export an archive of your account](https://support.strava.co
 which includes much more data, however your activities are now in their
 original file format (eg. GPX or FIT format, some gzipped, some not) and
 named like `971607640.gpx`, `83514080.gpx.gz` and `1243401459.fit.gz`.
+(The [Strava support page](https://support.strava.com/hc/en-us/articles/216918437-Exporting-your-Data-and-Bulk-Export#Bulk)
+talks of deleting accounts when exporting, but you don't need to delete 
+anything!)
 
 Here are some tools and notes to have them in a similar format.
 
