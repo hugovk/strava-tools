@@ -17,10 +17,10 @@ Remove non-Strava cookies:
 $ grep strava cookies.txt > strava_cookies.txt && mv strava_cookies.txt cookies.txt
 
 Put your activities.csv and activities/ next to this script and test with:
-$ python download_fit_as_gpx.py --dry-run
+$ python3 download_fit_as_gpx.py --dry-run
 
 Then:
-$ python download_fit_as_gpx.py
+$ python3 download_fit_as_gpx.py
 """
 
 import argparse
