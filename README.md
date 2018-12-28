@@ -120,6 +120,10 @@ You can make some great visualisations with
 [marcusvolz/strava](https://github.com/marcusvolz/strava). See that repo and
 `stravaviz.R` for examples.
 
+* https://twitter.com/hugovk/status/945040232117952512
+* https://twitter.com/hugovk/status/947350084429254656
+* https://twitter.com/hugovk/status/1043926402616238080
+
 ### Troubleshooting
 
 If you get an error with the [marcusvolz/strava](https://github.com/marcusvolz/strava)
