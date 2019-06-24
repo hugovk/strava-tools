@@ -16,7 +16,7 @@ which includes much more data, however your activities are now in their
 original file format (eg. GPX or FIT format, some gzipped, some not) and
 named like `971607640.gpx`, `83514080.gpx.gz` and `1243401459.fit.gz`.
 (The [Strava support page](https://support.strava.com/hc/en-us/articles/216918437-Exporting-your-Data-and-Bulk-Export#Bulk)
-talks of deleting accounts when exporting, but you don't need to delete 
+talks of deleting accounts when exporting, but you don't need to delete
 anything!)
 
 Here are some tools and notes to have them in a similar format.
@@ -62,27 +62,9 @@ GPX.
 
 #### GPSBabel
 
-You can use [GPSBabel](https://www.gpsbabel.org/) to convert them:
+You can use [GPSBabel](https://www.gpsbabel.org/) to convert them, as above.
 
-```bash
-# Install on Mac
-brew install gpsbabel
-
-# Convert activities/*.fit to activities/*.gpx, keeps FIT files
-bash fits2gpxs.sh
-```
-
-If you have something like a Wahoo Elemnt Bolt and get `fit: Unsupported
-protocol version 2.0` with GPSBabel 1.5.4, support for FIT v2 was added in
-https://github.com/gpsbabel/gpsbabel/pull/163 which hasn't yet been released
-(as of 2018-09-14).
-
-Instead, download and open latest build DMG file from
-https://github.com/gpsbabel/gpsbabel/releases (was d2c667f for me). Then edit
-`fits2gpxs.sh` and update `GPSBABELPATH` to point to the new `gpsbabel` binary,
-something like
-`GPSBABELPATH=/Volumes/GPSBabelFE/GPSBabelFE.app/Contents/MacOS/gpsbabel` and
-run again.
+Make sure you have GPSBabel 1.6.0 or later if you have something like a Wahoo Elemnt Bolt, or you may get `fit: Unsupported protocol version 2.0` with older versions such as 1.5.4.
 
 #### FIT-to-GPX
 
