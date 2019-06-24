@@ -1,6 +1,6 @@
 # First: install the packages
 # $ R
-# install.packages(c("devtools", "mapproj", "tidyverse"))
+# install.packages(c("devtools", "gtools", "mapproj", "tidyverse"))
 # devtools::install_github("marcusvolz/strava")
 # Or:
 # devtools::install_github("marcusvolz/strava", ref="4b15bef416955415759361ac10e227ca07c3fde6")
@@ -10,6 +10,7 @@
 # Then run this script like: Rscript stravaviz.R
 
 # Load the libraries
+library(gtools)
 library(strava)
 library(tidyverse)
 
