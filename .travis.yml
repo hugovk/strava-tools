@@ -1,3 +1,4 @@
+dist: xenial
 language: python
 cache: pip
 
@@ -5,6 +6,8 @@ cache: pip
 # https://en.wikipedia.org/wiki/CPython#Version_history
 python:
  - "3.6"
+ - "3.7"
+ - "3.8-dev"
 
 install:
  - pip install -U pip
@@ -12,7 +15,7 @@ install:
 
 script:
  # Static analysis
- - flake8 .
+ - flake8 --statistics --count
  - black --check --diff .
 
 matrix:
