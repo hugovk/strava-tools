@@ -41,6 +41,10 @@ gunzip activities/*.gz
 
 ### Convert FIT files
 
+Here's some different methods to convert from FIT to GPX.
+
+#### GPSBabel
+
 If you have any FIT files, you can use [GPSBabel](https://www.gpsbabel.org/)
 to convert them:
 
@@ -55,16 +59,7 @@ bash fits2gpxs.sh
 # rm activities/*.fit
 ```
 
-### Convert FIT v2 files
-
-The Wahoo Elemnt Bolt creates files in FIT version 2. Here's some ways to convert to
-GPX.
-
-#### GPSBabel
-
-You can use [GPSBabel](https://www.gpsbabel.org/) to convert them, as above.
-
-Make sure you have GPSBabel 1.6.0 or later if you have something like a Wahoo Elemnt Bolt, or you may get `fit: Unsupported protocol version 2.0` with older versions such as 1.5.4.
+The Wahoo Elemnt Bolt creates files in FIT version 2. Use GPSBabel 1.6.0 or later, or you may get `fit: Unsupported protocol version 2.0` with older versions such as GPSBabel 1.5.4.
 
 #### FIT-to-GPX
 
