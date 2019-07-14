@@ -36,12 +36,12 @@ def convert_date_string(input):
 
 def output_file(activity, ext=None):
     # Return name like 20141207-152233-Ride.gpx
-    new_date = convert_date_string(activity["date"])
+    new_date = convert_date_string(activity["Activity Date"])
 
-    path = pathlib.Path(activity["filename"])
+    path = pathlib.Path(activity["Filename"])
     if not ext:
         ext = "".join(path.suffixes)
-    outfile = "{}-{}{}".format(new_date, activity["type"], ext)
+    outfile = "{}-{}{}".format(new_date, activity["Activity Type"], ext)
     outfile = path.parent / outfile
     return outfile
 
@@ -61,9 +61,9 @@ if __name__ == "__main__":
     for activity in activities:
         # We want to rename the file like 20141207-152233-Ride.gpx
         # print(activity)
-        infile = activity["filename"]
+        infile = activity["Filename"]
         outfile = output_file(activity)
 
         print("{}\t->\t{}".format(infile, outfile))
         if not args.dry_run:
-            os.rename(activity["filename"], outfile)
+            os.rename(activity["Filename"], outfile)
