@@ -3,6 +3,7 @@
 
 import argparse
 import csv
+import datetime
 import os
 import pathlib  # Python 3.4+
 import sys
@@ -23,14 +24,15 @@ def load_csv(csv_file):
     return data
 
 
-def convert_date_string(input):
-    # 2010-05-22 19:39:29
+def convert_date_string(input_string):
+    # May 22, 2010, 7:39:29 PM
     # ->
     # 20100522-193929
-    new_date = input
+    new_date = datetime.datetime.strptime(input_string, "%b %d, %Y, %I:%M:%S %p")
+    new_date = new_date.isoformat()
     new_date = new_date.replace("-", "")
     new_date = new_date.replace(":", "")
-    new_date = new_date.replace(" ", "-")
+    new_date = new_date.replace("T", "-")
     return new_date
 
 
@@ -48,7 +50,8 @@ def output_file(activity, ext=None):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="TODO", formatter_class=argparse.ArgumentDefaultsHelpFormatter
+        description="Rename files, eg. 1836025202.gpx to 20180912-064451-Ride.gpx",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument("-c", "--csv", default="activities.csv", help="CSV filename")
     parser.add_argument(
