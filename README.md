@@ -91,7 +91,13 @@ to export each file.
 Alternatively, use `download_fit_as_gpx.py` to get several. See instructions at
 the top of the file.
 
-## marcusvolz/strava
+## Make stuff
+
+### dérive
+
+Generate heatmaps by dragging and dropping files into https://erik.github.io/derive/
+
+### marcusvolz/strava
 
 You can make some great visualisations with
 [marcusvolz/strava](https://github.com/marcusvolz/strava). See that repo and
@@ -101,7 +107,7 @@ You can make some great visualisations with
 * https://twitter.com/hugovk/status/947350084429254656
 * https://twitter.com/hugovk/status/1043926402616238080
 
-### Troubleshooting
+#### Troubleshooting
 
 If you get an error with the [marcusvolz/strava](https://github.com/marcusvolz/strava)
 visualisation tools when plotting elevations:
@@ -120,3 +126,8 @@ Some options:
 exports have points with elevation values when original files do not.
 
 * Skip plotting elevations.
+
+### heatmap.py
+
+Generate heatmaps using `gpx_heatmap.py`. See instructions at the top of the file and
+update the `HEATMAPPY` path for the file downloaded from https://sethoscope.net/heatmap/

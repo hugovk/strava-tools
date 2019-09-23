@@ -4,6 +4,9 @@
 # Creates heatmaps.
 
 # Run like:
+# gpx_heatmap.sh input_files output_file_infix
+
+# For example:
 # gpx_heatmap.sh "/tmp/activities/kilometrikisa-2017/*.gpx" kilometrikisa-2017
 
 # Requires:
