@@ -7,7 +7,7 @@
 # gpx_heatmap.sh input_files output_file_infix
 
 # For example:
-# gpx_heatmap.sh "/tmp/activities/kilometrikisa-2017/*.gpx" kilometrikisa-2017
+# ./gpx_heatmap.sh "activities/kilometrikisa-2019/*.gpx" kilometrikisa-2019
 
 # Requires:
 # * heatmap.py

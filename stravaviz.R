@@ -6,6 +6,8 @@
 # devtools::install_github("marcusvolz/strava", ref="4b15bef416955415759361ac10e227ca07c3fde6")
 # Or:
 # devtools::install_github("hugovk/strava", ref="no-ele")
+# Or:
+# install.packages("/Users/hugo/github/strava", repos = NULL, type="source")
 
 # Then run this script like: Rscript stravaviz.R
 
