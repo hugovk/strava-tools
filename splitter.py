@@ -145,7 +145,7 @@ def nonrecursive_find(inspec):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Chop out long paused sections of GPX tracks, "
-        "eg. if paused on a train",
+        "eg. if paused on a train, and save into split/ subdir",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument(
@@ -156,6 +156,7 @@ if __name__ == "__main__":
         "--max",
         metavar="metres",
         default=4000,
+        type=int,
         help="Max distance between points",
     )
     parser.add_argument(

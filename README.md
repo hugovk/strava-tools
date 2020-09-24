@@ -91,6 +91,18 @@ to export each file.
 Alternatively, use `download_fit_as_gpx.py` to get several. See instructions at
 the top of the file.
 
+### Split 'em
+
+Left the GPS recorder paused when on a train? Chop out long paused sections of GPX
+tracks, and put them into a split/ subdir.
+
+```bash
+pip install --upgrade gpxpy termcolor tqdm
+python splitter.py
+cp split/activities/*.gpx activities
+# backup are at split-backup/activities
+```
+
 ## Make stuff
 
 ### dérive
