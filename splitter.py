@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# encoding: utf-8
 """
 Chop out a long paused section of a GPX track
 
@@ -90,7 +89,7 @@ def save_gpx(gpx, filename, dry_run):
 
 
 def split_gpx(filename, max_distance, max2, dry_run):
-    gpx_file = open(filename, "r")
+    gpx_file = open(filename)
     gpx = gpxpy.parse(gpx_file)
 
     new_gpx = copy.deepcopy(gpx)

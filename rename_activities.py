@@ -10,7 +10,7 @@ import sys
 def load_csv(csv_file):
     data = []
 
-    with open(csv_file, "r") as csv_file:
+    with open(csv_file) as csv_file:
         reader = csv.DictReader(csv_file)
         for row in reader:
             data.append(row)
@@ -65,6 +65,6 @@ if __name__ == "__main__":
         infile = activity["Filename"]
         outfile = output_file(activity)
 
-        print("{}\t->\t{}".format(infile, outfile))
+        print(f"{infile}\t->\t{outfile}")
         if not args.dry_run:
             os.rename(activity["Filename"], outfile)
