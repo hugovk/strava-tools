@@ -1,8 +1,8 @@
 # strava-tools
 
-[![Build Status](https://travis-ci.org/hugovk/strava-tools.svg?branch=master)](https://travis-ci.org/hugovk/strava-tools)
+[![GitHub Actions status](https://github.com/hugovk/strava-tools/workflows/Lint/badge.svg)](https://github.com/hugovk/strava-tools/actions)
 [![Python: 3.6+](https://img.shields.io/badge/python-3.6+-blue.svg?logo=python&logoColor=FFE873)](https://www.python.org/downloads/)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Code style: Black](https://img.shields.io/badge/code%20style-Black-000000.svg)](https://github.com/psf/black)
 
 Command-line scripts to do things with Strava.
 
