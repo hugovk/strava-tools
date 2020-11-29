@@ -3,8 +3,9 @@ import argparse
 import csv
 import datetime
 import os
-import pathlib  # Python 3.4+
+import pathlib
 import sys
+from termcolor import cprint
 
 
 def load_csv(csv_file):
@@ -41,7 +42,7 @@ def output_file(activity, ext=None):
     path = pathlib.Path(activity["Filename"])
     if not ext:
         ext = "".join(path.suffixes)
-    outfile = "{}-{}{}".format(new_date, activity["Activity Type"], ext)
+    outfile = f"{new_date}-{activity['Activity Type']}{ext}"
     outfile = path.parent / outfile
     return outfile
 
@@ -67,4 +68,7 @@ if __name__ == "__main__":
 
         print(f"{infile}\t->\t{outfile}")
         if not args.dry_run:
-            os.rename(activity["Filename"], outfile)
+            try:
+                os.rename(activity["Filename"], outfile)
+            except FileNotFoundError:
+                cprint(f"File not found: {infile}", "yellow")
