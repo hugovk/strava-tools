@@ -7,7 +7,7 @@ Good for creating an animated GIF.
 Assumes "tile" is in the title or description of each.
 
 Requires
-1. Chromedriver https://sites.google.com/a/chromium.org/chromedriver/
+1. Chromedriver https://sites.google.com/chromium.org/driver/
 2. Data in https://veloviewer.com
 3. Data in https://www.statshunters.com
 4. pip install selenium
@@ -40,7 +40,7 @@ convert -delay 20 screenshots/*.png -loop 0 screenshots/anim.gif
 
 Or for longer delay at end of loop, prefix last screenshot with 'last-':
 
-convert -delay 30 screenshots/2020*.png -delay 100 screenshots/last-*.png \
+convert -delay 30 screenshots/202*.png -delay 100 screenshots/last-*.png \
     -loop 0 screenshots/anim.gif
 """
 import argparse
@@ -103,13 +103,16 @@ def open_page(driver, date):
     print(url)
 
     driver.get(url)
-    print("wait for DONE to be located...")
+    print("wait for main tick to be located...")
+    main_spinner = (
+        '//div[@class="both"'
+        ' and contains(., "Checking for new activities on Strava")'
+        ' and contains(., "check_circle")]'
+    )
     # TODO Could wait until Activities spinner to turn green,
     # TODO no need to wait for "Checking for new activities on Strava"
     wait = WebDriverWait(driver, 120)
-    wait.until(
-        EC.presence_of_element_located((By.XPATH, '//h1[contains(text(), "DONE!")]'))
-    )
+    wait.until(EC.presence_of_element_located((By.XPATH, main_spinner)))
     print("DONE located")
 
     print("find Close button")
@@ -119,12 +122,8 @@ def open_page(driver, date):
     print("click Close button")
     button.click()
 
-    print("wait for DONE to be gone...")
-    wait.until(
-        EC.invisibility_of_element_located(
-            (By.XPATH, '//h1[contains(text(), "DONE!")]')
-        )
-    )
+    print("wait for main tick to be gone...")
+    wait.until(EC.invisibility_of_element_located((By.XPATH, main_spinner)))
     print("DONE is gone")
     time.sleep(1)
 
