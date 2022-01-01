@@ -116,8 +116,8 @@ def open_page(driver, date):
     print("DONE located")
 
     print("find Close button")
-    button = driver.find_element_by_xpath(
-        '//div[@class="ui-button__content"][contains(text(),"Close")]'
+    button = driver.find_element(
+        By.XPATH, '//div[@class="ui-button__content"][contains(text(),"Close")]'
     )
     print("click Close button")
     button.click()
@@ -137,12 +137,12 @@ def get_date(driver, date):
 
     # span class filter_list
     print("Find/open filter button")
-    filter_list = driver.find_element_by_class_name("filter_list")
+    filter_list = driver.find_element(By.CLASS_NAME, "filter_list")
     filter_list.click()
 
     # ui-collapsible__header-content
     print("Find/open 'Filter by date'")
-    toggles = driver.find_elements_by_class_name("ui-collapsible")
+    toggles = driver.find_elements(By.CLASS_NAME, "ui-collapsible")
     for toggle in toggles:
         if toggle.text == "Filter by date":
             toggle.click()
@@ -150,7 +150,7 @@ def get_date(driver, date):
             break
 
     print("Find 'to' date picker")
-    datepicker = driver.find_elements_by_class_name("ui-datepicker__content")[1]
+    datepicker = driver.find_elements(By.CLASS_NAME, "ui-datepicker__content")[1]
     # open it
     datepicker.click()
 
@@ -159,18 +159,18 @@ def get_date(driver, date):
     target_day = str(int(date[6:8]))  # drop leading zeros
 
     # calendar popup
-    popup = driver.find_elements_by_class_name("ui-datepicker-calendar__body")[1]
+    popup = driver.find_elements(By.CLASS_NAME, "ui-datepicker-calendar__body")[1]
 
-    month_and_year = popup.find_element_by_class_name(
-        "ui-calendar-controls__month-and-year"
+    month_and_year = popup.find_element(
+        By.CLASS_NAME, "ui-calendar-controls__month-and-year"
     )
     time.sleep(1)
 
     # Find month
     print(f"Find {target_month_and_year}")
-    back_button = popup.find_elements_by_class_name("ui-calendar-controls__nav-button")[
-        0
-    ]
+    back_button = popup.find_elements(
+        By.CLASS_NAME, "ui-calendar-controls__nav-button"
+    )[0]
     while month_and_year.text != target_month_and_year:
         print(month_and_year.text)
         back_button.click()
@@ -179,7 +179,7 @@ def get_date(driver, date):
 
     # Find day
     print(f"Find {target_day}")
-    days = popup.find_elements_by_class_name("ui-calendar-week__date")
+    days = popup.find_elements(By.CLASS_NAME, "ui-calendar-week__date")
     for day in days:
         print(day.text)
         if day.text == target_day:
