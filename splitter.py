@@ -21,7 +21,7 @@ from pathlib import Path
 import gpxpy  # pip3 install gpxpy
 import gpxpy.gpx
 from gpxpy.geo import ONE_DEGREE
-from termcolor import colored  # pip3 install termcolor
+from termcolor import cprint  # pip3 install termcolor
 from tqdm import tqdm  # pip3 install tqdm
 
 # from pprint import pprint
@@ -85,12 +85,17 @@ def save_gpx(gpx, filename, dry_run):
         with open(new_filename, "w") as f:
             f.write(gpx.to_xml())
 
-    print(colored(new_filename, "green"))
+    cprint(new_filename, "green")
 
 
 def split_gpx(filename, max_distance, max2, dry_run):
     gpx_file = open(filename)
-    gpx = gpxpy.parse(gpx_file)
+    try:
+        gpx = gpxpy.parse(gpx_file)
+    except gpxpy.gpx.GPXException as e:
+        print(gpx_file)
+        cprint(f"Cannot parse {filename}: {e}", "red")
+        return
 
     new_gpx = copy.deepcopy(gpx)
     new_gpx.tracks = []
