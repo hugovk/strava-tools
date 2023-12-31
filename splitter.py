@@ -102,7 +102,6 @@ def split_gpx(filename, max_distance, max2, dry_run):
     edit_made = False
 
     for track in gpx.tracks:
-
         new_track = copy.deepcopy(track)
         new_track.segments = []
         # print(track.name, track.type)
@@ -117,7 +116,6 @@ def split_gpx(filename, max_distance, max2, dry_run):
                 else:
                     less_than = distance_less_than(point, last_point, max2)
                     if less_than:
-
                         # d = point.distance_2d(last_point)
                         # if d < max_distance:  # metres
 
