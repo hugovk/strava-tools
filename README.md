@@ -8,11 +8,8 @@ Command-line scripts to do things with Strava.
 
 ## Exported data
 
-Pre-GPDR, you could [bulk export all your activities as GPX files](https://web.archive.org/web/20170322015958/https://support.strava.com/hc/en-us/articles/216918437-Exporting-your-Data-and-Bulk-Export#Bulk)
-which were named like `20170921-074112-Ride.gpx`.
-
-Post-GDPR, you can [export an archive of your account](https://support.strava.com/hc/en-us/articles/216918437-Exporting-your-Data-and-Bulk-Export#Bulk)
-which includes much more data, however your activities are now in their
+You can [export an archive of your account](https://support.strava.com/hc/en-us/articles/216918437-Exporting-your-Data-and-Bulk-Export#Bulk)
+including your activities in their
 original file format (eg. GPX or FIT format, some gzipped, some not) and
 named like `971607640.gpx`, `83514080.gpx.gz` and `1243401459.fit.gz`.
 (The [Strava support page](https://support.strava.com/hc/en-us/articles/216918437-Exporting-your-Data-and-Bulk-Export#Bulk)
