@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import argparse
 import csv
-import datetime
+import datetime as dt
 import os
 import pathlib
 import sys
@@ -28,7 +28,7 @@ def convert_date_string(input_string):
     # May 22, 2010, 7:39:29 PM
     # ->
     # 20100522-193929
-    new_date = datetime.datetime.strptime(input_string, "%b %d, %Y, %I:%M:%S %p")
+    new_date = dt.datetime.strptime(input_string, "%b %d, %Y, %I:%M:%S %p")
     new_date = new_date.isoformat()
     new_date = new_date.replace("-", "")
     new_date = new_date.replace(":", "")
