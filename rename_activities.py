@@ -3,13 +3,13 @@ import argparse
 import csv
 import datetime as dt
 import os
-import pathlib
 import sys
+from pathlib import Path
 
 from termcolor import cprint
 
 
-def load_csv(csv_file):
+def load_csv(csv_file: str) -> list[dict[str, str]]:
     data = []
 
     with open(csv_file) as csv_file:
@@ -24,7 +24,7 @@ def load_csv(csv_file):
     return data
 
 
-def convert_date_string(input_string):
+def convert_date_string(input_string: str) -> str:
     # May 22, 2010, 7:39:29 PM
     # ->
     # 20100522-193929
@@ -36,11 +36,11 @@ def convert_date_string(input_string):
     return new_date
 
 
-def output_file(activity, ext=None):
+def output_file(activity: dict[str, str], ext: str | None = None) -> Path:
     # Return name like 20141207-152233-Ride.gpx
     new_date = convert_date_string(activity["Activity Date"])
 
-    path = pathlib.Path(activity["Filename"])
+    path = Path(activity["Filename"])
     if not ext:
         ext = "".join(path.suffixes)
     outfile = f"{new_date}-{activity['Activity Type']}{ext}"
@@ -48,7 +48,7 @@ def output_file(activity, ext=None):
     return outfile
 
 
-if __name__ == "__main__":
+def main() -> None:
     parser = argparse.ArgumentParser(
         description="Rename files, eg. 1836025202.gpx to 20180912-064451-Ride.gpx",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
@@ -73,3 +73,7 @@ if __name__ == "__main__":
                 os.rename(activity["Filename"], outfile)
             except FileNotFoundError:
                 cprint(f"File not found: {infile}", "yellow")
+
+
+if __name__ == "__main__":
+    main()
